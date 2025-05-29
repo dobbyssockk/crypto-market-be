@@ -1,4 +1,5 @@
 {
+  "name": "crypto-market-be",
   "type": "module",
   "scripts": {
     "start": "node index.js",

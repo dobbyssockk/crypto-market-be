@@ -1,43 +1,64 @@
-# Crypto Market [Backend]
+# 🛠️ Crypto Market [Backend]
 
-This project is a cryptocurrency dashboard that provides real-time price updates for popular cryptocurrencies. The dashboard includes charts, favorite lists, and a search function to help users monitor cryptocurrency market changes. The frontend is built using React and integrates with the **Crypto Market Backend** to fetch candlestick chart data and real-time asset details.
+A lightweight Node.js + Express server that powers the Crypto Market dashboard. It provides candlestick chart data and real-time price information for selected cryptocurrencies via CCXT and Luxon.
 
-## Frontend
+---
 
-Check out the [frontend part of this project](https://github.com/dobbyssockk/crypto-market-frontend)
+## 🔗 Related Project
 
-## Dashboard
+> 👉 Frontend repository: [crypto-market-fe](https://github.com/dobbyssockk/crypto-market-fe)
 
-![Dashboard](screenshots/dashboard.png)
+---
 
-The main dashboard provides an overview of your favorite cryptocurrencies and the market in general.
+## 🧭 Project Overview
 
-## Currency Detail
+This backend application exposes a simple API that fetches historical OHLCV (Open-High-Low-Close-Volume) data for cryptocurrencies using the Binance exchange via the `ccxt` library.  
+It’s designed to work with the Crypto Market React frontend and includes REST endpoints, timestamp formatting with `luxon`, and full CORS support for local development.
 
-![Currency Detail](screenshots/currencyDetail.png)
+---
 
-The detailed view shows candlestick charts and real-time price changes for individual cryptocurrencies.
+## 🚀 Features
 
-## Features
+- REST API built with Express
+- OHLCV candlestick data via `ccxt` (Binance)
+- Timestamp formatting using `luxon`
+- CORS-enabled for frontend integration
 
-- **Cryptocurrency Price Tracking**: Real-time updates for major cryptocurrencies like Bitcoin, Ethereum, and more.
-- **Candlestick Chart**: Visualize price movements for different time periods.
-- **Favorites Management**: Mark and view favorite cryptocurrencies for quick access, stored locally.
-- **Search Functionality**: Quickly search for any cryptocurrency by symbol or name.
+---
 
-## Tech Stack
+## 📡 Available Endpoints
 
-### Crypto Market Frontend
+`GET /candles/:symbol`
 
-React.js with Vite for fast builds and efficient development.
-The frontend communicates with the CoinCap API to fetch cryptocurrency data such as prices, symbols, and names. It also fetches candle data from the **Crypto Market Backend**.
+- Returns 30 days of OHLCV data for the given cryptocurrency symbol.
+- Example: `/candles/ETH` → returns data for `ETH/USDT`.
 
-- **Assets List**: The frontend makes a request to the CoinCap API to fetch a list of cryptocurrencies. Each asset is displayed with its name, symbol, price, and logo.
-- **Asset Details**: When viewing a specific cryptocurrency, the frontend fetches additional details such as the 24-hour price change and candlestick chart data, which are obtained from the backend.
-- **LocalStorage Integration**: The favorite cryptocurrencies selected by the user are stored in the browser's `localStorage`, allowing users to save their favorite assets and keep them after refreshing or returning to the page.
+---
 
-### Crypto Market Backend
+## 🛠️ Technologies Used
 
-The backend is built using Node.js and Express, and it uses the **ccxt** library to retrieve candlestick data from the Binance exchange. The backend API fetches OHLCV (Open, High, Low, Close, Volume) data for a specific cryptocurrency and returns it to the frontend.
+- **Node.js** – server runtime
+- **Express.js** – minimal REST API framework
+- **ccxt** – unified crypto market API
+- **Luxon** – modern date/time handling
+- **CORS** – cross-origin request support
 
-- **Candlestick Data**: The backend fetches the historical price data for cryptocurrencies over a configurable time range (default is 30 days). This data is then formatted and returned as JSON to the frontend for rendering in a candlestick chart.
+---
+
+## 💡 Key Concepts
+
+- **External API integration**: fetch live data from Binance
+- **Custom data formatting**: normalize data for chart rendering
+- **Clean architecture**: decoupled backend logic and UI
+- **Minimal config**: no build tools or database setup required
+
+---
+
+## 🧪 Local Installation
+
+```bash
+git clone https://github.com/dobbyssockk/crypto-market-be.git
+cd crypto-market-be
+npm install
+npm start
+```
